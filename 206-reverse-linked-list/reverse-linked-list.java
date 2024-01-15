@@ -26,16 +26,22 @@ class Solution {
     // }
     // return head;
     // <-------Time Complexity O(n)-------->
-          ListNode temp=head;
-          ListNode pre=null;
-          while(temp!=null){
-             ListNode front=temp.next;
-              temp.next=pre;
-              pre=temp;
-              temp=front;
-          }
-          return pre;
-
+        //   ListNode temp=head;
+        //   ListNode pre=null;
+        //   while(temp!=null){
+        //      ListNode front=temp.next;
+        //       temp.next=pre;
+        //       pre=temp;
+        //       temp=front;
+        //   }
+        //   return pre;
+// <---Time Complexity O(N)
+      if(head==null || head.next==null)return head;
+      ListNode newHead = reverseList(head.next);
+      ListNode front=head.next;
+      front.next=head;
+      head.next=null;
+      return newHead;
     }
 
 }
