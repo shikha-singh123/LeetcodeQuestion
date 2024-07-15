@@ -1,25 +1,19 @@
 class Solution {
     public boolean isIsomorphic(String s, String t) {
-        if(s.length()!=t.length()){
-        return false;
-        }
-        Map<Character,Character>charMappingMap=new HashMap<>();
-        for(int i=0;i<s.length();i++){
-        char original =s.charAt(i);
-        char  replacement=t.charAt(i);
-           if(!charMappingMap.containsKey(original)){
-               if(!charMappingMap.containsValue(replacement)){
-                   charMappingMap.put(original,replacement);
-               }else
-               return false;
-           }else{
-               char mappedCharacter=charMappingMap.get(original);
-               if(mappedCharacter!=replacement){
-                   return false;
-               }
-           }
-        }
-           return true;
 
+        int []indexS=new int [200];
+        int []indexT=new int [200];
+
+        int n1=s.length();
+        int n2=t.length();
+        if(n1!=n2) return false;
+        for(int i=0;i<n1;i++){
+            if (indexS[s.charAt(i)]!= indexT[t.charAt(i)]){
+                return false;
+            }
+        indexS[s.charAt(i)]=i+1;
+        indexT[t.charAt(i)]=i+1;
+        }
+        return true;
     }
 }
