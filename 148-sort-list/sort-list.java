@@ -9,42 +9,29 @@
  * }
  */
 class Solution {
-    ListNode findMiddle(ListNode head){
-        ListNode slow=head;
-        ListNode fast=head.next;
-        while(fast!=null && fast.next!=null){
-            slow=slow.next;
-            fast=fast.next.next;
-        } 
-        return slow;
-    }
-     ListNode mergeTwoLinkedlist(ListNode list1,ListNode list2){
-        ListNode dummyNode = new ListNode(-1);
-        ListNode temp=dummyNode;
-        while(list1!=null && list2!=null){
-            if(list1.val<list2.val){
-                temp.next=list1;
-                   temp=list1;
-                   list1=temp.next;
-            }else{
-                 temp.next=list2;
-                   temp=list2;
-                   list2=temp.next;
-            }
-        }
-        if(list1!=null) temp.next=list1;
-        else temp.next=list2;
-        return dummyNode.next;
-    }
-
     public ListNode sortList(ListNode head) {
-  if(head==null ||head.next==null) return head;
-  ListNode middle= findMiddle(head);
-  ListNode right=middle.next;
-  middle.next=null;
-  ListNode left=head;
-  left=sortList(left);
-  right=sortList(right);
-  return mergeTwoLinkedlist(left,right);
+        if(head==null) return null;
+        ListNode temp=new ListNode(0);
+        ListNode r=temp;
+        ListNode t=head;
+        int l=0;
+        while(head!=null){
+            l++;
+            head=head.next;
+        }
+        int res[]=new int[l];
+        int p=0;
+        head=t;
+        while(head!=null){
+            res[p]=head.val;
+            head=head.next;
+            p++;
+        }
+        Arrays.sort(res);
+        for(int i=0;i<l;i++){
+            r.next=new ListNode(res[i]);
+            r=r.next;
+        }
+        return temp.next;
     }
 }
