@@ -1,15 +1,16 @@
 class Solution {
     public int maxDepth(String s) {
-        int curDepth=0;
-        int maxDepth=0;
+        int count=0;
+        int max=0;
         for(char ch:s.toCharArray()){
             if(ch=='('){
-                curDepth++;
-                maxDepth=Math.max(curDepth,maxDepth);
+                count++;
+                if(max<=count)
+                max=count;
             }else if(ch==')'){
-                curDepth--;
+                count--;
             }
         }
-        return maxDepth;
+        return max;
     }
 }
